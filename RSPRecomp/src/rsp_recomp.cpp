@@ -131,6 +131,12 @@ uint32_t expected_c0_reg_value(int cop0_reg) {
         return 0; // Pretend DMAs complete instantly
     case Cop0Reg::RSP_COP0_SP_SEMAPHORE:
         return 0; // Always acquire the semaphore
+    case Cop0Reg::RSP_COP0_DPC_START:
+        return 0; // Pretend DPC start is 0
+    case Cop0Reg::RSP_COP0_DPC_END:
+        return 0; // Pretend DPC end is 0
+    case Cop0Reg::RSP_COP0_DPC_CURRENT:
+        return 0; // Pretend DPC current is 0
     case Cop0Reg::RSP_COP0_DPC_STATUS:
         return 0; // Good enough for the microcodes that would be recompiled (i.e. non-graphics ones)
     default:
@@ -154,6 +160,14 @@ std::string_view c0_reg_write_action(int cop0_reg) {
         return "DO_DMA_READ";
     case Cop0Reg::RSP_COP0_SP_WR_LEN:
         return "DO_DMA_WRITE";
+    case Cop0Reg::RSP_COP0_DPC_START:
+        return ""; // Ignore DPC start writes
+    case Cop0Reg::RSP_COP0_DPC_END:
+        return ""; // Ignore DPC end writes
+    case Cop0Reg::RSP_COP0_DPC_CURRENT:
+        return ""; // Ignore DPC current writes
+    case Cop0Reg::RSP_COP0_DPC_STATUS:
+        return ""; // Ignore DPC status writes
     default:
         fmt::print(stderr, "Unhandled mtc0: {}\n", cop0_reg);
         throw std::runtime_error("Unhandled mtc0");
@@ -552,6 +566,10 @@ bool process_instruction(size_t instr_index, const std::vector<rabbitizer::Instr
                 }
                 break;
             }
+        case InstrId::rsp_cfc2:
+            // Read VCO/VCC/VCE control register - emit 0 for audio ucode
+            print_line("{}{} = 0", ctx_gpr_prefix(rt), rt);
+            break;
         default:
             fmt::print(stderr, "Unhandled instruction: {}\n", instr.getOpcodeName());
             assert(false);

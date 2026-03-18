@@ -1,0 +1,9 @@
+text_offset = 0x0008F250
+text_size = 0x193C
+text_address = 0x04001080
+rom_file_path = "../../mariogolf64/baserom.z64"
+output_file_path = "aspMain.cpp"
+output_function_name = "aspMain"
+extra_indirect_branch_targets = [
+    0x0014, 0x0108, 0x01A8, 0x0280, 0x02D4,
+]
