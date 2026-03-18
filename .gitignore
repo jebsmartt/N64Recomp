@@ -51,4 +51,4 @@ cmake-build*
 
 # Mario Golf recomp pipeline
 mariogolf64_patched.elf
-recomp_output/
+recomp_output/recomp_run.log
