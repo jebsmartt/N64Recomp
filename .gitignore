@@ -48,3 +48,7 @@ rt64.log
 .idea
 cmake-build*
 .DS_Store
+
+# Mario Golf recomp pipeline
+mariogolf64_patched.elf
+recomp_output/

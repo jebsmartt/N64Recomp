@@ -1,0 +1,40 @@
+[input]
+elf_path = "/home/jebsmartt/repos/mariogolf_recomp/N64Recomp/mariogolf64_patched.elf"
+output_func_path = "/home/jebsmartt/repos/mariogolf_recomp/N64Recomp/recomp_output/"
+
+[patches]
+stubs = [
+    "func_80025D30",
+    "func_80025D54",
+    "func_800427E8",
+    "func_80044FDC",
+    "func_800451E4",
+    "func_80045C00",
+    "func_80045CE0",
+    "func_80046604",
+    "func_800469EC",
+    "func_800487E4",
+    "func_80048D7C",
+    "func_8004B474",
+    "func_8008060C",
+    "func_80080688",
+    "func_8008085C",
+    "func_80080C4C",
+    "func_80080E14",
+    "func_80080E7C",
+    "func_80081D4C",
+    "func_80084468",
+    "func_8008534C",
+    "func_8008679C",
+    "func_80086864",
+    "func_80089094",
+    "func_8008C6B0",
+    "func_8008CD30",
+    "func_800A2F50",
+    "mainproc",
+    "overlays",
+    "func_800A6E08",
+]
+ignored = [
+
+]
